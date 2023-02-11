@@ -238,5 +238,15 @@ class DualPurposeAccount(BlogAcount):
         pass
 
 
+class Usuario:
+
+    def __init__(self,*param):
+        self.usuario=param[0]
+        self.password = param[1]
+        self.nombre= param[2]
+        self.apellido=param[3]
+        self.correo=param[4]
+        self.profesion=param[5]
+        self.estado=param[6]
 
 

@@ -7,7 +7,7 @@ from tkinter import *
 class Registro:
     def __init__(self):
         self.getWindow()
-        # self.getLabels()
+        self.getLabels()
         # self.getInput()
         # self.getButtons()
         self.ven.mainloop()
@@ -15,17 +15,33 @@ class Registro:
     def getWindow(self):
         self.ven = Toplevel()
         self.ven.title("Registro de usuario")
-        self.ven.geometry("1100x450")
+        self.ven.geometry("700x490")
         self.ven.config(bg="purple")
         self.ven.resizable(0, 0)
 
     def getLabels(self):
+        posX=120
         lb1 = Label(self.ven, fg="white",
                     font=("Tahoma", 20),
-                    text="Usuario", bg="purple").place(x=145, y=50)
+                    text="Registro de usuario", bg="purple").place(x=220, y=30)
         lb2 = Label(self.ven, fg="white",
                     font=("Tahoma", 20),
-                    text="Password", bg="purple").place(x=130, y=135)
+                    text="Usuario", bg="purple").place(x=posX, y=100)
+        lb3 = Label(self.ven, fg="white",
+                    font=("Tahoma", 20),
+                    text="Password", bg="purple").place(x=posX, y=150)
+        lb4 = Label(self.ven, fg="white",
+                    font=("Tahoma", 20),
+                    text="Nombres", bg="purple").place(x=posX, y=200)
+        lb5 = Label(self.ven, fg="white",
+                    font=("Tahoma", 20),
+                    text="Apellidos", bg="purple").place(x=posX, y=250)
+        lb6 = Label(self.ven, fg="white",
+                    font=("Tahoma", 20),
+                    text="Correos", bg="purple").place(x=posX, y=300)
+        lb7 = Label(self.ven, fg="white",
+                    font=("Tahoma", 20),
+                    text="Profesion", bg="purple").place(x=posX, y=350)
 
     def getInput(self):
         self.usuario = Entry(self.ven, font=("Arial", 20),
