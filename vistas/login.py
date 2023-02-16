@@ -1,8 +1,11 @@
 from tkinter import messagebox
 from tkinter import *
 from vistas.Registrarse import *
+from vistas.gui_process import *
+from vistas.menuC import *
 class LoginC:
     def __init__(self):
+        self.cv= GuiProcess()
         self.getWindow()
         self.getLabels()
         self.getInput()
@@ -12,7 +15,8 @@ class LoginC:
     def getWindow(self):
         self.ven = Tk()
         self.ven.title("Segundo C")
-        self.ven.geometry("400x300")
+        self.cv.center(self.ven,400,300)
+        #self.ven.geometry("400x300")
         self.ven.config(bg="purple")
         self.ven.resizable(0, 0)
 
@@ -56,8 +60,16 @@ class LoginC:
     def accion1(self):
         obj1 = Registro()
     def accion(self):
-        messagebox.showinfo("Advertencia",self.usuario.get(),
-                            parent=self.ven)
+        if self.usuario.get()=="SegundoC" and self.password.get()=="1234":
+            obj = Usuario("SegundoC", "1234", "Adrian", "Cevallos",
+                          "adrian@gmail.com", "Desarrollador", "A")
+            MenuC(obj)
+        else:
+            messagebox.showinfo("Login",
+                                "Credenciales invalidas!",parent=self.ven)
+
+
+
 
 #Codigo de prueba
 ob1 = LoginC()
