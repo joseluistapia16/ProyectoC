@@ -249,4 +249,14 @@ class Usuario:
         self.profesion=param[5]
         self.estado=param[6]
 
+class Estudiantes:
+
+    def __init__(self,*args):
+        self.cedula = args[0]
+        self.nombres = args[1]
+        self.apellidos = args[2]
+        self.correo = args[3]
+        self.cod_mat = args[4]
+
+
 
