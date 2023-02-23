@@ -4,6 +4,7 @@ from vistas.gui_process import *
 from dominio.entidades import *
 from vistas.newStudent import *
 from procesos.cadenas import *
+from vistas.editStudent import *
 class GestionDatos:
 
     def __init__(self,obj = None):
@@ -115,6 +116,7 @@ class GestionDatos:
                 self.n_fila[1]=posi
                 self.clk=0
             if self.clk==0 and self.n_fila[0]== self.n_fila[1]:
+               EditStudent(self.datos[posi])
                print(posi,self.datos[posi].cedula,
                   self.datos[posi].nombres,
                 self.datos[posi].apellidos)
