@@ -8,7 +8,7 @@ from vistas.editStudent import *
 class GestionDatos:
 
     def __init__(self,obj = None):
-        self.datos=[]
+        self.datos=self.cargar_datos()
         self.cad = Cadena()
         self.obU = obj
         self.n_fila=[-1,-1]
@@ -18,7 +18,7 @@ class GestionDatos:
         self.getLabels()
         self.getInputs()
         self.getButtons()
-        self.__showTable()
+        self.__showTable(self.datos)
         self.venT.mainloop()
 
 
@@ -46,11 +46,35 @@ class GestionDatos:
                              bg="white",
                             validatecommand=(self.validate1,"%d","%S","%s"))
         self.cedula.place(x=450, y=77)
+    def filtro(self):
+        self.datos= self.cargar_datos()
+        print(self.datos)
+        print(self.datos)
+        lista1 = self.filtrar(self.cedula.get(),self.datos)
+        print(lista1, "nuevo")
+        if lista1 != []:
+            self.__showTable(lista1)
+            self.cedula.delete(0,END)
+        else:
+            self.__showTable(self.datos)
+
+
+    def filtrar(self,id,lista):
+        lista2 = []
+        for i in range(len(lista)):
+            if id == lista[i].cedula:
+
+                obj = Estudiantes(lista[i].cedula, lista[i].nombres,
+                                  lista[i].apellidos,lista[i].correo,
+                                  lista[i].cod_mat)
+                lista2.append(obj)
+        return lista2
+
 
     def getButtons(self):
         btn1 = Button(self.venT,relief="flat",text="Buscar",
                       bg="green",fg="black",font=("Arial",12),
-                      #command=self.__logueo,
+                      command=self.filtro,
                       cursor="hand1").place(x=680,y=80,width=90,height=20)
         btn2 = Button(self.venT, relief="flat", text="Salir",
                       bg="green", fg="black", font=("Arial", 12),
@@ -61,17 +85,15 @@ class GestionDatos:
                       bg="green",font=("Arial",11),
                      command=self.reg1,
                       cursor="hand1").place(x=460,y=350,width=90)
-
-    def __showTable(self,lista1=None):
-        lista1=[]
-        obj1 = Estudiantes("099848474", "ERICK LORENZO",
-                          "BAQUE LOOR", "baque@gmail.com", 222)
-        lista1.append(obj1)
+    def cargar_datos(self):
+        lista1 = []
         for i in range(0,5):
-            obj=Estudiantes("1234567","Jose Carlos",
+            obj=Estudiantes("1234567"+str(i+1),"Jose Carlos",
                                       "Linares Lopez","Correo",123)
             lista1.append(obj)
-        self.datos=lista1
+        return lista1
+    def __showTable(self,lista1=None):
+        print(len(lista1))
         self.tabla = ttk.Treeview(self.venT,columns=(1,2,3,4,5),
                                   show="headings",height=8)
         self.tabla.bind("<1>",self.onClick)
@@ -93,6 +115,7 @@ class GestionDatos:
         self.tabla.column(3,anchor=CENTER)
         self.tabla.column(4,anchor=CENTER)
         self.tabla.column(5,anchor=CENTER)
+
         for x in range(len(lista1)):
             self.tabla.insert("","end"
                 ,values=(str(x+1),

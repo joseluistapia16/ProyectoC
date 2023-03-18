@@ -257,6 +257,9 @@ class Estudiantes:
         self.apellidos = args[2]
         self.correo = args[3]
         self.cod_mat = args[4]
+        self.carrera = args[5]
+        self.estado = args[6]
+        self.id_usuario= args[7]
 
 
 
